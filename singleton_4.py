@@ -14,7 +14,9 @@ class SingletonMeta(type):
         print(cls.__instances)
         return cls.__instances[cls]
 
-    
+# SingletonMeta overrides the __call__ method (which gets called when a class is instantiated). This method checks if the class has already been instantiated before (i.e., if an instance exists in the __instances dictionary). If not, it creates a new instance; otherwise, it returns the existing one.
+
+# DBConnector is then defined with SingletonMeta as its metaclass. This means that when DBConnector is instantiated, it's the __call__ method of SingletonMeta that gets executed. 
 class DBConnector(metaclass=SingletonMeta):
     def __init__(self):
         self.status = "Not Connected"
